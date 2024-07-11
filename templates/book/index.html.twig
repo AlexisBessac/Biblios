@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue des livres{% endblock %}
+
+{% block body %}
+<section class="container py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h1 class="text-center py-2">Catalogue des Livres</h1>
+        {% if books is not empty %}
+            <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                {% for book in books %}
+                    <div class="col mb-5">
+                        <div class="card h-100">
+                            <!-- Détails du livre -->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <h2 class="fw-bolder">{{ book.title }}</h2>
+                                    <p class="text-muted">{{ book.author }}</p>
+                                </div>
+                            </div>
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center">
+                                    <a class="btn btn-outline-dark mt-auto" href="{{ path('app_book_show', {id: book.id}) }}" title="Voir">Voir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="text-center">Aucun livre actuellement.</p>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

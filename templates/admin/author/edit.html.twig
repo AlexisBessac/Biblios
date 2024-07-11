@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un auteur{% endblock %}
+
+{% block body %}
+   <section class="container py-5 my-4">
+        <h1 class="text-center my-4">Modifier un auteur</h1>
+
+        <a href="{{ path('app_admin_author_index') }}" class="btn btn-outline-dark my-4" title="Revenir à la liste">Revenir à la liste</a>
+
+        {{ include('admin/author/_form.html.twig', {'button_label': 'Modifier'}) }}
+   </section>
+
+{% endblock %}

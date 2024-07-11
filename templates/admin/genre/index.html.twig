@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Genres{% endblock %}
+
+{% block body %}
+<section class="container py-5 my-4">
+    <h1 class="text-center my-4">Liste des Genres</h1>
+
+    <a href="{{ path('app_admin_genre_new') }}" title="Créer un nouveau genre" class="btn btn-primary">Créer un nouveau genre</a>
+
+    <table class="table table-bordered table-striped my-4 mx-auto">
+        <thead>
+            <tr>
+                <th>Nom du genre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for genre in genres %}
+            <tr>
+                <td>{{ genre.name }}</td>
+                <td>
+                    <a href="{{ path('app_admin_genre_show', {'id': genre.id}) }}" class="btn btn-outline-primary" title="Voir le détail">Voir le détail</a>
+                    <a href="{{ path('app_admin_genre_edit', {'id': genre.id}) }}" class="btn btn-outline-success" title="Modifier">Modifier</a>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="2">Aucun genre trouvé dans la base de données</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+{% endblock %}

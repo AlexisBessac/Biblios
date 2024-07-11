@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% set page_title = book is null ? 'Livre inconnu' : book.title %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block body %}
+    <section class=" container py-5">
+        <div class="container px-4 px-lg-5 my-5">
+            <div class="row gx-4 gx-lg-5 align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display fw-bolder">{{ page_title }}</h1>
+                    <div class="fs-5 py-2">
+                        <span>Auteur(s): {{ book.author }}</span>
+                    </div>
+                    <div class="fs-5 py-2">
+                        <span>{{book.description}}</span>
+                    </div>
+                    <div class="d-flex my-4">
+                        <a href="{{ path('app_book_index') }}">
+                            <button class="btn btn-outline-dark flex-shrink-0" title="Retour à la liste" type="button">
+                                Retour à la liste
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
