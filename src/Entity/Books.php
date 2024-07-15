@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
-use App\Repository\BooksRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BooksRepository;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: BooksRepository::class)]
+#[Vich\Uploadable]
 class Books
 {
     #[ORM\Id]
@@ -25,8 +27,8 @@ class Books
     #[Assert\Length(
         min: 3,
         max: 100,
-        minMessage: 'Ce champ est trop court. Il doit faire au minimum {{limit}} caractères',
-        maxMessage: 'Ce champ es trop long. Il doit faire au maximum {{limit}} caractères'
+        minMessage: 'Ce champ est trop court. Il doit faire au minimum {{ limit }} caractères',
+        maxMessage: 'Ce champ es trop long. Il doit faire au maximum {{ limit }} caractères'
     )]
     private ?string $title = null;
 
@@ -37,17 +39,24 @@ class Books
      * @var Collection<int, Genre>
      */
     #[ORM\ManyToMany(targetEntity: Genre::class, inversedBy: 'books')]
-    private Collection $Genre;
+    private Collection $genre;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
-    private ?author $Author = null;
+    private ?Author $author = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $cover = null;
+
+    #[Vich\UploadableField(mapping: 'books', fileNameProperty: 'cover')]
+    #[Assert\Image()]
+    private ?File $coverFile = null;
+
     public function __construct()
     {
-        $this->Genre = new ArrayCollection();
+        $this->genre = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,13 +93,13 @@ class Books
      */
     public function getGenre(): Collection
     {
-        return $this->Genre;
+        return $this->genre;
     }
 
     public function addGenre(Genre $genre): static
     {
-        if (!$this->Genre->contains($genre)) {
-            $this->Genre->add($genre);
+        if (!$this->genre->contains($genre)) {
+            $this->genre->add($genre);
         }
 
         return $this;
@@ -98,19 +107,19 @@ class Books
 
     public function removeGenre(Genre $genre): static
     {
-        $this->Genre->removeElement($genre);
+        $this->genre->removeElement($genre);
 
         return $this;
     }
 
-    public function getAuthor(): ?author
+    public function getAuthor(): ?Author
     {
-        return $this->Author;
+        return $this->author;
     }
 
-    public function setAuthor(?author $Author): static
+    public function setAuthor(?Author $author): static
     {
-        $this->Author = $Author;
+        $this->author = $author;
 
         return $this;
     }
@@ -124,6 +133,29 @@ class Books
     {
         $this->description = $description;
 
+        return $this;
+    }
+
+    public function getCover(): ?string
+    {
+        return $this->cover;
+    }
+
+    public function setCover(?string $cover): static
+    {
+        $this->cover = $cover;
+
+        return $this;
+    }
+
+    public function getCoverFile(): ?File
+    {
+        return $this->coverFile;
+    }
+
+    public function setCoverFile(?File $coverFile = null): static
+    {
+        $this->coverFile = $coverFile;
         return $this;
     }
 }

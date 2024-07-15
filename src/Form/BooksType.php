@@ -7,6 +7,7 @@ use App\Entity\Books;
 use App\Entity\Genre;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,6 +17,7 @@ class BooksType extends AbstractType
     {
         $builder
             ->add('title')
+            ->add('coverfile', FileType::class)
             ->add('publishedAt', null, [
                 'widget' => 'single_text',
             ])
@@ -30,6 +32,7 @@ class BooksType extends AbstractType
                 'class' => author::class,
                 'choice_label' => 'name',
             ])
+            ->add('description')
         ;
     }
 
