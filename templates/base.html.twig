@@ -23,11 +23,18 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item"><a class="nav-link" href="{{ path('app_book_index') }}" title="Catalogue">Catalogue</a></li>
                 {% if app.user %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}" title="Déconnexion">Déconnexion</a></li>
-                {% else %}
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_register') }}" title="S'inscrire">S'inscrire</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}" title="Se connecter">Se connecter</a></li>
+                {% if 'ROLE_ADMIN' in app.user.roles %}
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_admin_books_index') }}" title="Liste des livres">Liste des livres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_admin_author_index') }}" title="Liste des auteurs">Liste des auteurs</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_admin_genre_index') }}" title="Liste des genres">Liste des genres</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ path('app_admin_user_index') }}" title="Liste des utilisateurs">Liste des utilisateurs</a></li>
                 {% endif %}
+                
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_logout') }}" title="Déconnexion">Déconnexion</a></li>
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_register') }}" title="S'inscrire">S'inscrire</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ path('app_login') }}" title="Se connecter">Se connecter</a></li>
+            {% endif %}
             </ul>
         </div>
     </div>
