@@ -1,12 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit User{% endblock %}
+{% block title %}Modifier un utilisateur{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+    <section class="container py-5 my-4">
+        <h1 class="text-center my-4">Modifier un utilisateur</h1>
 
-    {{ include('/admin/user/_form.html.twig', {'button_label': 'Update'}) }}
-
-    <a href="{{ path('app_admin_user_index') }}">back to list</a>
-
+        <a href="{{ path('app_admin_user_index') }}" class="btn btn-outline-dark my-4">Revenir à la ilste</a>
+    
+    
+        {{ include('/admin/user/_form.html.twig', {'button_label': 'Modifier'}) }}
+    
+    
+    </section>
 {% endblock %}
