@@ -52,6 +52,9 @@ class Books
     #[Assert\Image()]
     private ?File $coverFile = null;
 
+    #[ORM\Column]
+    private ?int $pageNumber = null;
+
     public function __construct()
     {
         $this->genre = new ArrayCollection();
@@ -154,6 +157,18 @@ class Books
     public function setCoverFile(?File $coverFile = null): static
     {
         $this->coverFile = $coverFile;
+
+        return $this;
+    }
+
+    public function getPageNumber(): ?int
+    {
+        return $this->pageNumber;
+    }
+
+    public function setPageNumber(int $pageNumber): static
+    {
+        $this->pageNumber = $pageNumber;
 
         return $this;
     }
