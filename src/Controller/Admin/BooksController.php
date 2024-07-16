@@ -33,6 +33,9 @@ class BooksController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $book->setCoverFile($form->get('coverFile')->getData());
+            
             $entityManager->persist($book);
             $entityManager->flush();
 
@@ -60,6 +63,9 @@ class BooksController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $book->setCoverFile($form->get('coverFile')->getData());
+            
             $entityManager->flush();
 
             return $this->redirectToRoute('app_admin_books_index', [], Response::HTTP_SEE_OTHER);

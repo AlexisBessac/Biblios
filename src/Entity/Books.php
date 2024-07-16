@@ -21,14 +21,12 @@ class Books
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Assert\NotBlank(
-        message: "Ce champ ne doit pas être vide",
-    )]
+    #[Assert\NotBlank(message: "Ce champ ne doit pas être vide")]
     #[Assert\Length(
         min: 3,
         max: 100,
         minMessage: 'Ce champ est trop court. Il doit faire au minimum {{ limit }} caractères',
-        maxMessage: 'Ce champ es trop long. Il doit faire au maximum {{ limit }} caractères'
+        maxMessage: 'Ce champ est trop long. Il doit faire au maximum {{ limit }} caractères'
     )]
     private ?string $title = null;
 
@@ -156,6 +154,7 @@ class Books
     public function setCoverFile(?File $coverFile = null): static
     {
         $this->coverFile = $coverFile;
+
         return $this;
     }
 }

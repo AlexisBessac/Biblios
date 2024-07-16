@@ -17,7 +17,10 @@ class BooksType extends AbstractType
     {
         $builder
             ->add('title')
-            ->add('coverfile', FileType::class)
+            ->add('coverFile', FileType::class, [
+                'required' => false,
+                'label' => 'Image de couverture',
+            ])
             ->add('publishedAt', null, [
                 'widget' => 'single_text',
             ])
