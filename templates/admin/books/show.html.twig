@@ -19,6 +19,10 @@
                 <th>Date de publication</th>
                 <td>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</td>
             </tr>
+            <tr>
+                <th>Nombre de pages</th>
+                <td>{{ book.pageNumber }}</td>
+            </tr>
         </tbody>
     </table>
 
