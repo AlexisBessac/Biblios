@@ -5,22 +5,23 @@
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block body %}
-    <section class=" container py-5">
+<main>
+    <section class="container py-5">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
-                <div class="col-md-6">
-                    <h1 class="display fw-bolder">{{ page_title }}</h1>
+                <div class="col-md-4">
+                    <img src="{{ vich_uploader_asset(book, 'coverFile') }}" class="img-fluid" alt="Couverture du livre {{ book.title }}">
+                </div>
+                <div class="col-md-8">
+                    <h1 class="display-6 fw-bolder">{{ page_title }}</h1>
                     <div class="fs-5 py-2">
                         <span>Auteur(s): {{ book.author }}</span>
                     </div>
                     <div class="fs-5 py-2">
-                        <img src="{{book.cover}}" alt="Couverture du livre {{book.title}}">
-                    </div>
-                    <div class="fs-5" py-2>
-                        <span>{{book.pageNumber}} pages</span>
+                        <span>{{ book.pageNumber }} pages</span>
                     </div>
                     <div class="fs-5 py-2">
-                        <span>{{book.description}}</span>
+                        <span>{{ book.description }}</span>
                     </div>
                     <div class="d-flex my-4">
                         <a href="{{ path('app_book_index') }}">
@@ -33,4 +34,5 @@
             </div>
         </div>
     </section>
+</main>
 {% endblock %}
