@@ -3,7 +3,6 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <!-- Header-->
     <header class="bg-primary bg-gradient text-white">
         <div class="container py-5 my-5 text-center">
             <h1 class="text-center">Biblios</h1>
@@ -11,20 +10,21 @@
             <a class="btn btn-lg btn-light" href="{{ path('app_book_index') }}" title="Parcourir le catalogue">Parcourez le catalogue</a>
         </div>
     </header>
-    <!-- About section-->
-    <section>
-        <div class="container py-4">
-            <div class="row gx-4 justify-content-center">
-                <div class="col-lg-8">
-                    <h2>Biblios : c'est quoi ?</h2>
-                    <p class="lead">Biblios est la plateforme officielle de consultation du catalogue de la médiathèque de Klow. Explorez notre collection avec une recherche efficace. Biblios s'engage pour faciliter l'accès à la culture et promouvoir la richesse de notre patrimoine littéraire.</p>
-                    <p>Fonctionnalités clés :</p>
-                    <ul>
-                        <li>Recherche avancée de livres</li>
-                        <li>Affichage détaillé des informations sur les livres</li>
-                    </ul>
+    <main>
+        <section>
+            <div class="container py-4">
+                <div class="row gx-4 justify-content-center">
+                    <div class="col-lg-8">
+                        <h2>Biblios : c'est quoi ?</h2>
+                        <p class="lead">Biblios est la plateforme officielle de consultation du catalogue de la médiathèque de Klow. Explorez notre collection avec une recherche efficace. Biblios s'engage pour faciliter l'accès à la culture et promouvoir la richesse de notre patrimoine littéraire.</p>
+                        <p>Fonctionnalités clés :</p>
+                        <ul>
+                            <li>Recherche avancée de livres</li>
+                            <li>Affichage détaillé des informations sur les livres</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 {% endblock %}

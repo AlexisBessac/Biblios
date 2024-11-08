@@ -3,13 +3,16 @@
 {% block title %}Créer un genre{% endblock %}
 
 {% block body %}
+<main>
     <section class="container py-5 my-4">
         <h1 class="text-center my-4">Créer un genre</h1>
 
-        <a href="{{ path('app_admin_genre_index') }}" class="btn btn-outline-dark my-4" title="Revenir à la liste">Revenir à la liste</a>
+        <a href="{{ path('app_admin_genre_index') }}" class="btn btn-outline-dark my-4"
+            title="Revenir à la liste">Revenir à la liste</a>
 
 
-    {{ include('admin/genre/_form.html.twig') }}
+        {{ include('admin/genre/_form.html.twig') }}
 
     </section>
+</main>
 {% endblock %}

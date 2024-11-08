@@ -3,34 +3,38 @@
 {% block title %}Liste des auteurs{% endblock %}
 
 {% block body %}
-   <section class="container py-5 my-4">
-    <h1 class="text-center my-4">Liste des auteurs</h1>
+<main>
+    <section class="container py-5 my-4">
+        <h1 class="text-center my-4">Liste des auteurs</h1>
 
-    <a href="{{ path('app_admin_author_new') }}" class="btn btn-primary my-4" title="Créer un auteur">Créer un auteur</a>
+        <a href="{{ path('app_admin_author_new') }}" class="btn btn-primary my-4" title="Créer un auteur">Créer un
+            auteur</a>
 
-    <table class="table table-bordered table-striped my-4">
-        <thead>
-            <tr>
-                <th>Nom et prénom de l'auteur</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for author in authors %}
-            <tr>
-                <td>{{ author.name }}</td>
-                <td>
-                    <a href="{{ path('app_admin_author_show', {'id': author.id}) }}" class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
-                    <a href="{{ path('app_admin_author_edit', {'id': author.id}) }}" class="btn btn-outline-success" title="Modifier">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="2">Aucun auteur trouvé dans la base de données</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-   </section>
+        <table class="table table-bordered table-striped my-4">
+            <thead>
+                <tr>
+                    <th>Nom et prénom de l'auteur</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for author in authors %}
+                <tr>
+                    <td>{{ author.name }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_author_show', {'id': author.id}) }}"
+                            class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
+                        <a href="{{ path('app_admin_author_edit', {'id': author.id}) }}" class="btn btn-outline-success"
+                            title="Modifier">Modifier</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="2">Aucun auteur trouvé dans la base de données</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
 {% endblock %}

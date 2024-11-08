@@ -3,39 +3,41 @@
 {% block title %}Liste des utilisateurs{% endblock %}
 
 {% block body %}
-<section class="container py-5 my-4">
-    <h1 class="text-center my-4">Liste des utilisateurs</h1>
-
-    <a href="{{ path('app_admin_user_new') }}" class="btn btn-outline-dark my-4">Créer un utilisateur</a>
-
-    <table class="table table-bordered table-striped my-4">
-        <thead>
-            <tr>
-                <th>Email</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.email }}</td>
-                <td>{{ user.lastname }}</td>
-                <td>{{ user.firstname }}</td>
-                <td>
-                    <a href="{{ path('app_admin_user_show', {'id': user.id}) }}" class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
-                    <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-outline-success" title="Modifier">Modifier</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-
-</section>
+<main>
+    <section class="container py-5 my-4">
+        <h1 class="text-center my-4">Liste des utilisateurs</h1>
+    
+        <a href="{{ path('app_admin_user_new') }}" class="btn btn-outline-dark my-4">Créer un utilisateur</a>
+    
+        <table class="table table-bordered table-striped my-4">
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_user_show', {'id': user.id}) }}" class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
+                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-outline-success" title="Modifier">Modifier</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    
+    
+    </section>
+</main>
 {% endblock %}
