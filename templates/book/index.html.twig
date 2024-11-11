@@ -10,7 +10,7 @@
             {% if books is not empty %}
                 <div class="row gx-4 gx-lg-5 row-cols-1 row-cols-md-2 justify-content-center">
                     {% for book in books %}
-                        <div class="col mb-5">
+                        <div class="col mb-5 mt-5">
                             <div class="card h-100">
                                 <div class="card-body p-4">
                                     <div class="text-center">
@@ -27,12 +27,13 @@
                         </div>
                     {% endfor %}
                 </div>
+                <div class="d-flex justify-content-center">
+                    {{knp_pagination_render(books)}}
+                </div>
             {% else %}
                 <p class="text-center">Aucun livre actuellement.</p>
             {% endif %}
         </div>
     </section>
-
-    {{knp_paginatio_render(books)}}
 </main>
 {% endblock %}
