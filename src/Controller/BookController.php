@@ -19,7 +19,8 @@ class BookController extends AbstractController
         $query = $booksRepository->createQueryBuilder('b')->getQuery();
 
         // Paginer les résultats
-        $books = $paginator->paginate(
+        $books = $paginator->paginate
+        (
             $query, // La requête ou QueryBuilder à paginer
             $request->query->getInt('page', 1), // Page actuelle, par défaut 1
             4 // Nombre d'éléments par page
