@@ -17,17 +17,19 @@
                     <td>{{ book.title }}</td>
                 </tr>
                 <tr>
-                    <th>Date de publication</th>
-                    <td>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</td>
+                    <th>Auteur</th>
+                    <td>{{ book.author }}</td>
                 </tr>
                 <tr>
                     <th>Nombre de pages</th>
                     <td>{{ book.pageNumber }}</td>
                 </tr>
+                <tr>
+                    <th>Date de publication</th>
+                    <td>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</td>
+                </tr>
             </tbody>
         </table>
-    
-        {{ include('admin/books/_delete_form.html.twig') }}
     </section>
 </main>
 {% endblock %}

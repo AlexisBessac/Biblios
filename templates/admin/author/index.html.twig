@@ -22,10 +22,9 @@
                 <tr>
                     <td>{{ author.name }}</td>
                     <td>
-                        <a href="{{ path('app_admin_author_show', {'id': author.id}) }}"
-                            class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
-                        <a href="{{ path('app_admin_author_edit', {'id': author.id}) }}" class="btn btn-outline-success"
-                            title="Modifier">Modifier</a>
+                        <a href="{{ path('app_admin_author_show', {'id': author.id}) }}" class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
+                        <a href="{{ path('app_admin_author_edit', {'id': author.id}) }}" class="btn btn-outline-success mx-2" title="Modifier">Modifier</a>
+                            <a href="{{ path('app_admin_author_delete', {'id': author.id}) }}" class="btn btn-outline-danger mx-2" title="Supprimer">Supprimer</a>
                     </td>
                 </tr>
                 {% else %}

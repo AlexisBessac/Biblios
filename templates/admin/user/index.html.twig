@@ -15,6 +15,7 @@
                     <th>Email</th>
                     <th>Nom</th>
                     <th>Prénom</th>
+                    <th>Rôles</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -25,13 +26,19 @@
                     <td>{{ user.lastname }}</td>
                     <td>{{ user.firstname }}</td>
                     <td>
+                        {% for role in app.user.roles %}
+                            <span class="badge bg-primary me-1">{{ role }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
                         <a href="{{ path('app_admin_user_show', {'id': user.id}) }}" class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
-                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-outline-success" title="Modifier">Modifier</a>
+                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-outline-success mx-2" title="Modifier">Modifier</a>
+                        <a href="{{ path('app_admin_user_delete', {'id': user.id}) }}" class="btn btn-outline-success mx-2" title="Supprimer">Supprimer</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5">no records found</td>
+                    <td colspan="5">Aucun utilisateur trouvé</td>
                 </tr>
             {% endfor %}
             </tbody>

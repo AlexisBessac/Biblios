@@ -21,8 +21,9 @@
                 <tr>
                     <td>{{ genre.name }}</td>
                     <td>
-                        <a href="{{ path('app_admin_genre_show', {'id': genre.id}) }}" class="btn btn-outline-primary" title="Voir le détail">Voir le détail</a>
-                        <a href="{{ path('app_admin_genre_edit', {'id': genre.id}) }}" class="btn btn-outline-success" title="Modifier">Modifier</a>
+                        <a href="{{ path('app_admin_genre_show', {'id': genre.id}) }}" class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
+                        <a href="{{ path('app_admin_genre_edit', {'id': genre.id}) }}" class="btn btn-outline-success mx-2" title="Modifier">Modifier</a>
+                        <a href="{{ path('app_admin_genre_delete', {'id': genre.id}) }}" class="btn btn-outline-danger mx-2" title="Supprimer">Supprimer</a>
                     </td>
                 </tr>
                 {% else %}

@@ -25,10 +25,9 @@
                     <td><i>{{ book.title }}</i></td>
                     <td>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</td>
                     <td>
-                        <a href="{{ path('app_admin_books_show', {'id': book.id}) }}"
-                            class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
-                        <a href="{{ path('app_admin_books_edit', {'id': book.id}) }}" class="btn btn-outline-success"
-                            title="Modifier">Modifier</a>
+                        <a href="{{ path('app_admin_books_show', {'id': book.id}) }}" class="btn btn-outline-primary mx-2" title="Voir le détail">Voir le détail</a>
+                        <a href="{{ path('app_admin_books_edit', {'id': book.id}) }}" class="btn btn-outline-success mx-2)" title="Modifier">Modifier</a>
+                        <a href="{{ path('app_admin_books_delete', {id: book.id}) }}" class="btn btn-outline-danger mx-2" title="Supprimer">Supprimer</a>
                     </td>
                 </tr>
                 {% else %}
