@@ -29,7 +29,7 @@ class UserType extends AbstractType
             ->add('lastname', TextType::class);
 
         if ($options['include_password']) {
-            $builder->add('password', PasswordType::class);
+            $builder->add('password', PasswordType::class, ['toggle' => true]);
         }
     }
 
