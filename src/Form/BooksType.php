@@ -29,11 +29,13 @@ class BooksType extends AbstractType
             ->add('author', EntityType::class, [
                 'class' => Author::class,
                 'choice_label' => 'name',
+                'autocomplete' => true
             ])
             ->add('genres', EntityType::class, [
                 'class' => Genre::class,
                 'choice_label' => 'name',
                 'multiple' => true,
+                'autocomplete' => true
             ])
         ;
     }

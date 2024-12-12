@@ -3,26 +3,31 @@
 {% block title %}{{book.name}}{% endblock %}
 
 {% block body %}
-    <h1>{{book.name}}</h1>
+   <main class="main">
+        <section class="container py-5">
+            <h1 class="text-center my-4">{{book.name}}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Description</th>
-                <td>{{ book.description }}</td>
-            </tr>
-            <tr>
-                <th>Nombres de pages</th>
-                <td>{{ book.pageNumber }}</td>
-            </tr>
-            <tr>
-                <th>Date de publication</th>
-                <td>{{ book.publishedAt ? book.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('app_admin_books_index') }}">back to list</a>
-
-    {{ include('admin/books/_delete_form.html.twig') }}
+            <a href="{{ path('app_admin_books_index') }}" class="btn btn-outline-primary my-4" title="Revenir à la liste des livres">Revenir à la liste des livres</a>
+        
+            <table class="table table-bordered table-striped my-4">
+                <tbody>
+                    <tr>
+                        <th>Résumé</th>
+                        <td>{{ book.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombres de pages</th>
+                        <td>{{ book.pageNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date de publication</th>
+                        <td>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        
+        
+            {{ include('admin/books/_delete_form.html.twig') }}
+        </section>
+   </main>
 {% endblock %}
