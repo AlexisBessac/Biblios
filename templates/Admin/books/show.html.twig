@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{book.name}}{% endblock %}
+
+{% block body %}
+    <h1>{{book.name}}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Description</th>
+                <td>{{ book.description }}</td>
+            </tr>
+            <tr>
+                <th>Nombres de pages</th>
+                <td>{{ book.pageNumber }}</td>
+            </tr>
+            <tr>
+                <th>Date de publication</th>
+                <td>{{ book.publishedAt ? book.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_books_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_books_edit', {'id': book.id}) }}">edit</a>
+
+    {{ include('admin/books/_delete_form.html.twig') }}
+{% endblock %}
