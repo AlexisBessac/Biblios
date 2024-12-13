@@ -7,7 +7,7 @@
         <section class="container py-5">
             <h1 class="text-center my-4">Modifier un livre</h1>
         
-            <a href="{{ path('app_admin_books_index') }}" class="btn btn-outline-primary" title="Revenir à la liste des livres">Revenir à la liste des livres</a>
+            <a href="{{ path('app_admin_books_index') }}" class="btn btn-outline-primary my-4" title="Revenir à la liste des livres">Revenir à la liste des livres</a>
             
             {{ include('admin/books/_form.html.twig', {'button_label': 'Modifier'}) }}
 
