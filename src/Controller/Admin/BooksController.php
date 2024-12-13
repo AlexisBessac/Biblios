@@ -57,6 +57,23 @@ final class BooksController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('cover')->getData();
+
+            if ($file) 
+            { // Vérifie si un fichier a été téléchargé
+                $filename = $book->getId() . '.' . $file->getClientOriginalExtension();
+
+                // Ajout d'un séparateur "/" dans le chemin
+                $file->move
+                (
+                    $this->getParameter('kernel.project_dir') . '/public/images/cover/',
+                    $filename
+                );
+
+                // Met à jour le chemin du fichier dans l'objet Book
+                $book->setCover($filename);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_admin_books_index', [], Response::HTTP_SEE_OTHER);
@@ -71,7 +88,7 @@ final class BooksController extends AbstractController
     #[Route('/{id}', name: 'app_admin_books_delete', methods: ['POST'])]
     public function delete(Request $request, Books $book, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$book->getId(), $request->getPayload()->getString('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $book->getId(), $request->getPayload()->getString('_token'))) {
             $entityManager->remove($book);
             $entityManager->flush();
         }
