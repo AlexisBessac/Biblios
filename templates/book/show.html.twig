@@ -13,15 +13,15 @@
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder">{{ page_title }}</h1>
                     <div class="fs-5">
-                        <span>Auteur(s) : {{ book.author.name }}</span>
+                        <span>{{ book.author.name }}</span>
                     </div>
-                    <div class="fs-5">
+                    <div class="fs-5 my-2">
                         <span>Publié en {{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</span>
                     </div>
-                    <div class="fs-5">
+                    <div class="fs-5 my-2">
                         <span>{{ book.pageNumber }}{{ book.pageNumber is not null ? ' pages '}}</span>
                     </div>
-                    <div class="fs-5">
+                    <div class="fs-5 my-2">
                         <span>{{ book.description}}</span>
                     </div>
                     <div class="d-flex">
