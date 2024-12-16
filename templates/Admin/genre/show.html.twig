@@ -3,22 +3,27 @@
 {% block title %}{{genre.name}}{% endblock %}
 
 {% block body %}
-    <h1>{{genre.name}}</h1>
+<main class="main">
+    <section class="container py-5">
+        <h1 class="text-center my-4">{{genre.name}}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ genre.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom du genre</th>
-                <td>{{ genre.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <a href="{{ path('app_admin_genre_index') }}" class="btn btn-outline-primary"
+            title="Revenir à la liste des genres">Revenir à la liste des genres</a>
 
-    <a href="{{ path('app_admin_genre_index') }}">back to list</a>
+        <table class="table table-bordered table-striped my-4">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ genre.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom du genre</th>
+                    <td>{{ genre.name }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    {{ include('admin/genre/_delete_form.html.twig') }}
+        {{ include('admin/genre/_delete_form.html.twig') }}
+    </section>
+</main>
 {% endblock %}
