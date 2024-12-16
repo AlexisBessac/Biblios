@@ -37,7 +37,7 @@ final class BooksController extends AbstractController
             {
                 // Génération d'un nom de fichier unique en utilisant l'ID du livre
                 // suivi de l'extension d'origine du fichier téléchargé
-                $filename = $book->getId() . '.' . $file->getClientOriginalExtension();
+                $filename = $book->getName() . '.' . $file->getClientOriginalExtension();
 
                 // Déplacement du fichier téléchargé vers le dossier de destination
                 $file->move
@@ -84,7 +84,7 @@ final class BooksController extends AbstractController
             {
                 // Génération d'un nom de fichier unique en utilisant l'ID du livre
                 // suivi de l'extension d'origine du fichier téléchargé
-                $filename = $book->getId() . '.' . $file->getClientOriginalExtension();
+                $filename = $book->getName() . '.' . $file->getClientOriginalExtension();
 
                 // Déplacement du fichier téléchargé vers le dossier de destination
                 $file->move
