@@ -30,6 +30,26 @@ final class BooksController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupération de la donnée associée au champ "cover" du formulaire
+            $file = $form->get('cover')->getData();
+
+            if ($file) // Vérifie si un fichier a été téléchargé
+            {
+                // Génération d'un nom de fichier unique en utilisant l'ID du livre
+                // suivi de l'extension d'origine du fichier téléchargé
+                $filename = $book->getId() . '.' . $file->getClientOriginalExtension();
+
+                // Déplacement du fichier téléchargé vers le dossier de destination
+                $file->move
+                (
+                    $this->getParameter('kernel.project_dir') . '/public/images/cover/',
+                    $filename
+                );
+
+                // Mise à jour de la propriété "cover" de l'objet Book avec le chemin ou le nom du fichier pour un usage ultérieur
+                $book->setCover($filename);
+            }
+            
             $entityManager->persist($book);
             $entityManager->flush();
 
@@ -57,23 +77,25 @@ final class BooksController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupération de la donnée associée au champ "cover" du formulaire
             $file = $form->get('cover')->getData();
 
-            if ($file) 
-            { // Vérifie si un fichier a été téléchargé
+            if ($file) // Vérifie si un fichier a été téléchargé
+            {
+                // Génération d'un nom de fichier unique en utilisant l'ID du livre
+                // suivi de l'extension d'origine du fichier téléchargé
                 $filename = $book->getId() . '.' . $file->getClientOriginalExtension();
 
-                // Ajout d'un séparateur "/" dans le chemin
+                // Déplacement du fichier téléchargé vers le dossier de destination
                 $file->move
                 (
                     $this->getParameter('kernel.project_dir') . '/public/images/cover/',
                     $filename
                 );
 
-                // Met à jour le chemin du fichier dans l'objet Book
+                // Mise à jour de la propriété "cover" de l'objet Book avec le chemin ou le nom du fichier pour un usage ultérieur
                 $book->setCover($filename);
             }
-
             $entityManager->flush();
 
             return $this->redirectToRoute('app_admin_books_index', [], Response::HTTP_SEE_OTHER);
