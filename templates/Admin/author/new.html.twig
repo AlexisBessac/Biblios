@@ -7,9 +7,10 @@
     <section class="container py-5">
         <h1 class="text-center my-4">Créer un nouvel auteur</h1>
 
+        <a href="{{ path('app_admin_author_index') }}" class="btn btn-outline-primary my-4" title="Revenir à la liste des auteurs">Revenir à la liste des auteurs</a>    
+
         {{ include('admin/author/_form.html.twig') }}
     
-        <a href="{{ path('app_admin_author_index') }}" class="btn btn-outline-primary my-4" title="Revenir à la liste des auteurs">Revenir à la liste des auteurs</a>    
     </section>
 </main>  
 {% endblock %}
