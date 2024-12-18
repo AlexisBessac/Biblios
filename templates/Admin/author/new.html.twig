@@ -1,11 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Author{% endblock %}
+{% block title %}Créer un nouvel auteur{% endblock %}
 
 {% block body %}
-    <h1>Create new Author</h1>
+<main class="main">
+    <section class="container py-5">
+        <h1 class="text-center my-4">Créer un nouvel auteur</h1>
 
-    {{ include('admin/author/_form.html.twig') }}
-
-    <a href="{{ path('app_admin_author_index') }}">back to list</a>
+        {{ include('admin/author/_form.html.twig') }}
+    
+        <a href="{{ path('app_admin_author_index') }}" class="btn btn-outline-primary my-4" title="Revenir à la liste des auteurs">Revenir à la liste des auteurs</a>    
+    </section>
+</main>  
 {% endblock %}

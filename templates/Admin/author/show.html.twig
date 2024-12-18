@@ -3,22 +3,23 @@
 {% block title %}{{author.name}}{% endblock %}
 
 {% block body %}
-    <h1>{{author.name}}</h1>
+<main class="main">
+    <section class="container py-5">
+        <h1 class="text-center my-4">{{author.name}}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ author.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom de l'auteur</th>
-                <td>{{ author.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <a href="{{ path('app_admin_author_index') }}" class="btn btn-outline-primary my-4"
+            title="Revenir à la liste des auteurs">Revenir à la liste des auteurs</a>
 
-    <a href="{{ path('app_admin_author_index') }}">back to list</a>
+        <table class="table table-bordered table-striped">
+            <tbody>
+                <tr>
+                    <th>Nom de l'auteur</th>
+                    <td>{{ author.name }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    {{ include('admin/author/_delete_form.html.twig') }}
+        {{ include('admin/author/_delete_form.html.twig') }}
+    </section>
+</main>
 {% endblock %}
