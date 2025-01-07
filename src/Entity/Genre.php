@@ -6,6 +6,7 @@ use App\Repository\GenreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GenreRepository::class)]
 class Genre
@@ -16,12 +17,19 @@ class Genre
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner le genre du livre.',
+    )]
     private ?string $name = null;
 
     /**
      * @var Collection<int, books>
      */
     #[ORM\ManyToMany(targetEntity: books::class, inversedBy: 'genres')]
+    #[Assert\Count(
+        min: 1,
+        minMessage: "Vous devez sélectionner au moins un libre.",
+    )]
     private Collection $books;
 
     public function __construct()

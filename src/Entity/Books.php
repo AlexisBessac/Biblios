@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BooksRepository::class)]
 class Books
@@ -17,27 +18,56 @@ class Books
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner le titre du livre.',
+    )]
+    #[Assert\Length(
+        min: 3,
+        max: 100,
+        minMessage: 'Le titre du livre doit faire au minimum {{ limit }} caractères.',
+        maxMessage: 'Le titre du livre doit faire au maximum {{ limit }} caractères.'
+    )]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Veuillez télécharger une image.")]
+    #[Assert\Image(
+        mimeTypes: ["image/jpeg", "image/png", "image/webp"],
+        mimeTypesMessage: "Veuillez télécharger une image valide (JPEG, PNG ou WEBP)."
+    )]
     private ?string $cover = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner le résumé du livre.',
+    )]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le résumé du livre doit faire au minimum {{ limit }} caractères.',
+    )]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column]    
+    #[Assert\Positive]
     private ?int $page_number = null;
 
     #[ORM\Column]
+    #[Assert\DateTime]
     private ?\DateTimeImmutable $published_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'books')]
+    #[Assert\NotNull(
+        message: "L'auteur est obligatoire.")]
     private ?Author $author = null;
 
     /**
      * @var Collection<int, Genre>
      */
     #[ORM\ManyToMany(targetEntity: Genre::class, mappedBy: 'books')]
+    #[Assert\Count(
+        min: 1,
+        minMessage: "Vous devez sélectionner au moins un genre.",
+    )]
     private Collection $genres;
 
     public function __construct()
