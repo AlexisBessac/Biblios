@@ -11,8 +11,9 @@
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
     </head>
+    {{ include('partials/_navbar.html.twig') }}
     <body>
         {% block body %}{% endblock %}
     </body>
-    {{ include('footer.html.twig') }}
+    {{ include('partials/_footer.html.twig') }}
 </html>
