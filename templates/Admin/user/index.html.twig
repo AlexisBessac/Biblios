@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+<main class="main">
+    <section class="container py-5">
+        <h1 class="text-center my-4">Liste des utilisateurs</h1>
+
+        <a href="{{ path('app_admin_user_new') }}" class="btn btn-outline-primary my-4"
+            title="Créer un nouvel utilisateur">Créer un nouvel utiisateur</a>
+
+        <table class="table table-bordered table-striped my-4">
+            <thead>
+                <tr>
+                    <th>Prénom</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                <tr>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>
+                        <a href="{{ path('app_admin_user_show', {'id': user.id}) }}"
+                            class="btn btn-outline-primary mx-2" title="Détail">Détail</a>
+                        <a href="{{ path('app_admin_user_edit', {'id': user.id}) }}" class="btn btn-outline-success"
+                            title="Modifier">Modifier</a>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Aucun Utilisateur trouvé dans la base de données</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+</main>
+{% endblock %}

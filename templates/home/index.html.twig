@@ -7,19 +7,19 @@
         <div class="container px-4 text-center">
             <h1 class="fw-bolder">Biblios</h1>
             <p class="lead">Catalogue en ligne de la médiathèque de Klow</p>
-            <a class="btn btn-lg btn-light" href="{{ path('app_book_index') }}">
+            <a class="btn btn-lg btn-light" href="{{ path('app_book_index') }}" title="Parcourir le catalogue">
                 <div class="d-flex justify-content-between align-items-center" style="width: 210px;">
                     <twig:ux:icon name="mingcute:book-5-line" width="24px" height="24px" />
                     <span>Parcourez le catalogue</span>
                 </div>
             </a>
-            <a class="btn btn-lg btn-light" href="{{ path('app_register') }}">
+            <a class="btn btn-lg btn-light" href="{{ path('app_register') }}" title="S'inscrire">
                 <div class="d-flex justify-content-center align-items-center" style="width: 210px;">
                     <twig:ux:icon name="mingcute:book-5-line" width="24px" height="24px" />
                     <span>S'inscrire</span>
                 </div>
             </a>
-            <a class="btn btn-lg btn-light" href="{{ path('app_login') }}">
+            <a class="btn btn-lg btn-light" href="{{ path('app_login') }}" title="Se Connecter">
                 <div class="d-flex justify-content-center align-items-center" style="width: 210px;">
                     <twig:ux:icon name="mingcute:book-5-line" width="24px" height="24px" />
                     <span>Se connecter</span>
