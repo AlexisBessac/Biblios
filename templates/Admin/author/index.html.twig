@@ -8,28 +8,26 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for author in authors %}
             <tr>
-                <td>{{ author.id }}</td>
                 <td>{{ author.name }}</td>
                 <td>
-                    <a href="{{ path('app_author_show', {'id': author.id}) }}">show</a>
-                    <a href="{{ path('app_author_edit', {'id': author.id}) }}">edit</a>
+                    <a href="{{ path('app_admin_author_show', {'id': author.id}) }}">show</a>
+                    <a href="{{ path('app_admin_author_edit', {'id': author.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="2">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_author_new') }}">Create new</a>
+    <a href="{{ path('app_admin_author_new') }}">Create new</a>
 {% endblock %}

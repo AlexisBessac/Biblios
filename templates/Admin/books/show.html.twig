@@ -34,9 +34,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_books_index') }}">back to list</a>
+    <a href="{{ path('app_admin_books_index') }}">back to list</a>
 
-    <a href="{{ path('app_books_edit', {'id': book.id}) }}">edit</a>
-
-    {{ include('books/_delete_form.html.twig') }}
+    {{ include('admin/books/_delete_form.html.twig') }}
 {% endblock %}
