@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Attribute\Route;
 #[Route('/admin/genre')]
 final class GenreController extends AbstractController
 {
-    #[Route(name: 'app_genre_admin_index', methods: ['GET'])]
+    #[Route(name: 'app_admin_genre_index', methods: ['GET'])]
     public function index(GenreRepository $genreRepository): Response
     {
         return $this->render('admin/genre/index.html.twig', [

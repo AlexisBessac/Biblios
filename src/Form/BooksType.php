@@ -9,6 +9,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 
 class BooksType extends AbstractType
 {
@@ -17,19 +19,24 @@ class BooksType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('cover')
+            ->add('cover', FileType::class, [
+                'mapped' => false,
+                'label' => "Image de couverture"
+            ])
             ->add('page_number')
             ->add('published_at', null, [
                 'widget' => 'single_text',
             ])
             ->add('author', EntityType::class, [
                 'class' => author::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
+                'autocomplete' => true,
             ])
             ->add('genre', EntityType::class, [
                 'class' => genre::class,
-                'choice_label' => 'id',
+                'choice_label' => 'name',
                 'multiple' => true,
+                'autocomplete' => true,
             ])
         ;
     }

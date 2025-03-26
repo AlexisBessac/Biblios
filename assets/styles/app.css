@@ -5,3 +5,8 @@ footer{
 ul, li{
     list-style: none;
 }
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+}

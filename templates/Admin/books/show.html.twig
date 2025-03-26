@@ -1,40 +1,38 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Books{% endblock %}
+{% block title %}Détails du Livre{% endblock %}
 
 {% block body %}
-    <h1>Books</h1>
+    <div class="container my-5">
+        <h1 class="mb-4 text-center">Détails du livre</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ book.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ book.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ book.description }}</td>
-            </tr>
-            <tr>
-                <th>Cover</th>
-                <td>{{ book.cover }}</td>
-            </tr>
-            <tr>
-                <th>Page_number</th>
-                <td>{{ book.pageNumber }}</td>
-            </tr>
-            <tr>
-                <th>Published_at</th>
-                <td>{{ book.publishedAt ? book.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <div class="my-4">
+            <a href="{{ path('app_admin_books_index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Retour à la liste
+            </a>
+        </div>
 
-    <a href="{{ path('app_admin_books_index') }}">back to list</a>
+        <table class="table table-bordered table-striped my-4">
+            <tbody>
+                <tr>
+                    <th>Titre</th>
+                    <td>{{ book.title }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ book.description }}</td>
+                </tr>
+                <tr>
+                    <th>Nombre de pages</th>
+                    <td>{{ book.pageNumber }}</td>
+                </tr>
+                <tr>
+                    <th>Publié en</th>
+                    <td>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    {{ include('admin/books/_delete_form.html.twig') }}
+        {{ include('admin/books/_delete_form.html.twig') }}
+    </div>
 {% endblock %}
