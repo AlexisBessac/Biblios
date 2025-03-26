@@ -2,12 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use App\Entity\Books;
 use App\Repository\BooksRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
-final class BookController extends AbstractController
+class BookController extends AbstractController
 {
     #[Route('/book', name: 'app_book_index')]
     public function index(BooksRepository $bookRepository, PaginatorInterface $paginator, Request $request): Response
