@@ -5,14 +5,19 @@
 {% block body %}
 <header class="bg-primary bg-gradient text-white py-5">
     <div class="container px-4 text-center">
-        <h1 class="fw-bolder">Biblios</h1>
-        <p>Catalogue en ligne de la médiathèque de Klow</p>
-        <a class="btn btn-lg btn-light my-2" href="{{ path('app_book_index') }}" title="Parcourir le catalogue">
-            <div class="d-flex justify-content-between align-items-center" style="width: 210px;">
-                <twig:ux:icon name="mingcute:book-5-line" width="24px" height="24px" />
-                <span>Parcourez le catalogue</span>
-            </div>
-        </a>
+        <h1 class="fw-bolder display-4">Biblios</h1>
+        <p class="lead">Explorez le catalogue en ligne de la médiathèque de Klow</p>
+        <div class="d-flex justify-content-center gap-3 mt-4">
+            <a class="btn btn-lg btn-light shadow-sm" href="{{ path('app_book_index') }}" title="Parcourir le catalogue">
+                <i class="fas fa-book me-2"></i> Parcourez le catalogue
+            </a>
+            <a class="btn btn-lg btn-light shadow-sm" href="{{ path('app_register') }}" title="S'inscrire">
+                <i class="fas fa-user-plus me-2"></i> S'inscrire
+            </a>
+            <a class="btn btn-lg btn-light shadow-sm" href="{{ path('app_login') }}" title="Se connecter">
+                <i class="fas fa-sign-in-alt me-2"></i> Se connecter
+            </a>
+        </div>
     </div>
 </header>
 
@@ -20,18 +25,52 @@
     <div class="container">
         <div class="row gx-4 justify-content-center">
             <div class="col-lg-8">
-                <h2 class="fw-bold">Biblios : qu'est-ce que c'est ?</h2>
-                <p>
-                    Biblios est la plateforme officielle de consultation du catalogue de la médiathèque de Klow. Biblios s'engage pour faciliter l'accès à la culture et promouvoir la richesse de notre patrimoine littéraire.
+                <h2 class="fw-bold mb-4">Qu'est-ce que Biblios ?</h2>
+                <p class="text-muted">
+                    Biblios est la plateforme officielle de consultation du catalogue de la médiathèque de Klow. Nous facilitons l'accès à la culture et promouvons la richesse de notre patrimoine littéraire.
                 </p>
-                <p class="py-3">
-                    Fonctionnalités clés :
-                </p>
-                <ul>
-                    <li>Recherche avancée de livres</li>
-                    <li>Affichage détaillé des informations sur les livres</li>
-                    <li>L'utilisateur peut faire des commentaires sur les livres du catalogue</li>
-                </ul>
+                <div class="py-3">
+                    <h5 class="fw-bold">Fonctionnalités clés :</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-search me-2 text-primary"></i> Recherche avancée de livres</li>
+                        <li><i class="fas fa-info-circle me-2 text-primary"></i> Affichage détaillé des informations sur les livres</li>
+                        <li><i class="fas fa-comments me-2 text-primary"></i> Commentaires des utilisateurs sur les livres</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-white py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Catalogue complet</h5>
+                        <p class="card-text text-muted">Accédez à des milliers de livres disponibles dans notre médiathèque.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <i class="fas fa-users fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Communauté active</h5>
+                        <p class="card-text text-muted">Partagez vos avis et découvrez les recommandations des autres utilisateurs.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
+                        <i class="fas fa-star fa-3x text-primary mb-3"></i>
+                        <h5 class="card-title">Livres populaires</h5>
+                        <p class="card-text text-muted">Découvrez les livres les plus appréciés par notre communauté.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
