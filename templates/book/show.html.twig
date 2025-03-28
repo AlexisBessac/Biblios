@@ -10,7 +10,8 @@
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
-                    <img class="card-img-top mb-5 mb-md-0 w-100 rounded shadow-lg" src="{{ asset('images/cover/' ~ book.cover) }}" alt="Couverture de {{ book.title }}" />
+                    <img class="card-img-top mb-5 mb-md-0 w-100 rounded shadow-lg"
+                        src="{{ asset('images/cover/' ~ book.cover) }}" alt="Couverture de {{ book.title }}" />
                 </div>
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder">{{ page_title }}</h1>
@@ -18,7 +19,8 @@
                         <span class="text-muted">Auteur : </span>{{ book.author.name }}
                     </div>
                     <div class="fs-5 mb-3">
-                        <span class="text-muted">Publié en : </span>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}
+                        <span class="text-muted">Publié en : </span>{{ book.publishedAt ? book.publishedAt|date('Y') :
+                        '' }}
                     </div>
                     <div class="fs-5 mb-3">
                         <span class="text-muted">Pages : </span>{{ book.pageNumber }}
@@ -27,8 +29,15 @@
                         <span class="text-muted">Description : </span>{{ book.description }}
                     </div>
                     <div class="d-flex">
-                        <a href="{{ path('app_book_index') }}" class="btn btn-outline-primary flex-shrink-0 my-4" title="Revenir au catalogue">
+                        <a href="{{ path('app_book_index') }}" class="btn btn-outline-primary flex-shrink-0 my-4"
+                            title="Revenir au catalogue">
                             <i class="fas fa-arrow-left"></i> Revenir au catalogue
+                        </a>
+                    </div>
+                    <div class="d-flex mx-2">
+                        <a href="{{ path('app_comments_new') }}" class="btn btn-outline-primary flex-shrink-0 my-4"
+                            title="Faire un commentaire">
+                            <i class="fas fa-arrow-left"></i> Faire un commentaire
                         </a>
                     </div>
                 </div>
