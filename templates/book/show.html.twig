@@ -6,36 +6,34 @@
 
 {% block body %}
 <main class="main">
-    <section class="py-5">
+    <section class="py-5 bg-light">
         <div class="container px-4 px-lg-5 my-5">
             <div class="row gx-4 gx-lg-5 align-items-center">
                 <div class="col-md-6">
-                    <img class="card-img-top mb-5 mb-md-0 w-100 rounded shadow-lg"
-                        src="{{ asset('images/cover/' ~ book.cover) }}" alt="Couverture de {{ book.title }}" />
+                    <img class="img-fluid rounded shadow-lg"
+                        src="{{ asset('images/cover/' ~ book.cover) }}" 
+                        alt="Couverture de {{ book.title }}" />
                 </div>
                 <div class="col-md-6">
-                    <h1 class="display-5 fw-bolder">{{ page_title }}</h1>
-                    <div class="fs-5 mb-3">
-                        <span class="text-muted">Auteur : </span>{{ book.author.name }}
+                    <h1 class="display-4 fw-bold mb-3">{{ page_title }}</h1>
+                    <div class="fs-5 mb-4">
+                        <p><strong class="text-muted">Auteur :</strong> {{ book.author.name }}</p>
+                        <p><strong class="text-muted">Publié en :</strong> {{ book.publishedAt ? book.publishedAt|date('Y') : 'Non spécifié' }}</p>
+                        <p><strong class="text-muted">Nombre de pages :</strong> {{ book.pageNumber }}</p>
+                        {% for paragraph in book.description|split('\n') %}
+                            {% if paragraph|trim is not empty %}
+                                <p>{{ paragraph|e }}</p>
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                    <div class="fs-5 mb-3">
-                        <span class="text-muted">Publié en : </span>{{ book.publishedAt ? book.publishedAt|date('Y') :
-                        '' }}
-                    </div>
-                    <div class="fs-5 mb-3">
-                        <span class="text-muted">Pages : </span>{{ book.pageNumber }}
-                    </div>
-                    <div class="fs-5 mb-3">
-                        <span class="text-muted">Description : </span>{{ book.description }}
-                    </div>
-                    <div class="d-flex">
-                        <a href="{{ path('app_book_index') }}" class="btn btn-outline-primary flex-shrink-0 my-4 mx-2"
+                    <div class="d-flex flex-column flex-md-row">
+                        <a href="{{ path('app_book_index') }}" class="btn btn-primary btn-lg my-2 mx-md-2"
                             title="Revenir au catalogue">
-                            <i class="fas fa-arrow-left"></i> Revenir au catalogue
+                            <i class="fas fa-arrow-left me-2"></i>Revenir au catalogue
                         </a>
-                        <a href="{{ path('app_comments_new') }}" class="btn btn-outline-primary flex-shrink-0 my-4"
+                        <a href="{{ path('app_comments_new') }}" class="btn btn-outline-secondary btn-lg my-2 mx-md-2"
                             title="Faire un commentaire">
-                            <i class="fas fa-arrow-left"></i> Faire un commentaire
+                            <i class="fas fa-comment-dots me-2"></i>Faire un commentaire
                         </a>
                     </div>
                 </div>
