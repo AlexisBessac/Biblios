@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Commentaire{% endblock %}
+
+{% block body %}
+    <div class="container my-5">
+        <h1 class="mb-4 text-center">Créer un nouveau commentaire</h1>
+
+        <div class="my-4">
+            <a href="{{ path('app_comments_index') }}" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Retour à la liste
+            </a>
+        </div>
+
+        <div class="card p-4 shadow-sm">
+            {{ include('comments/_form.html.twig') }}
+        </div>
+    </div>
+{% endblock %}

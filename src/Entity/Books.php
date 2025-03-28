@@ -40,9 +40,16 @@ class Books
     #[ORM\ManyToMany(targetEntity: genre::class, inversedBy: 'books')]
     private Collection $genre;
 
+    /**
+     * @var Collection<int, Comments>
+     */
+    #[ORM\OneToMany(targetEntity: Comments::class, mappedBy: 'books')]
+    private Collection $comments;
+
     public function __construct()
     {
         $this->genre = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -142,6 +149,36 @@ class Books
     public function removeGenre(genre $genre): static
     {
         $this->genre->removeElement($genre);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Comments>
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+
+    public function addComment(Comments $comment): static
+    {
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
+            $comment->setBooks($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComment(Comments $comment): static
+    {
+        if ($this->comments->removeElement($comment)) {
+            // set the owning side to null (unless already changed)
+            if ($comment->getBooks() === $this) {
+                $comment->setBooks(null);
+            }
+        }
 
         return $this;
     }
