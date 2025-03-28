@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BooksRepository::class)]
 class Books
@@ -17,18 +18,52 @@ class Books
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner le titre du livre.',
+    )]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Le titre du livre doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le titre du livre ne peut pas dépasser {{ limit }} caractères.',
+    )]
     private ?string $title = null;
 
     #[ORM\Column(type: Types::TEXT)]
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner le résumé du livre.',
+    )]
+    #[Assert\Length(
+        min: 3,
+        minMessage: 'Le résumé du livre doit faire au minimum {{ limit }} caractères.',
+    )]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Veuillez télécharger une image.")]
+    #[Assert\Image(
+        mimeTypes: ["image/jpeg", "image/png", "image/webp"],
+        mimeTypesMessage: "Veuillez télécharger une image valide (JPEG, PNG ou WEBP)."
+    )]
     private ?string $cover = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner le nombre de pages.',
+    )]
+    #[Assert\Positive(
+        message: 'Le nombre de pages doit être un nombre positif.',
+    )]
     private ?int $page_number = null;
 
     #[ORM\Column]
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner la date de publication.',
+    )]
+    #[Assert\Type(
+        type: \DateTimeImmutable::class,
+        message: 'La date de publication doit être une date valide.',
+    )]
     private ?\DateTimeImmutable $published_at = null;
 
     #[ORM\ManyToOne(inversedBy: 'books')]

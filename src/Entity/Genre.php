@@ -6,6 +6,7 @@ use App\Repository\GenreRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: GenreRepository::class)]
 class Genre
@@ -16,6 +17,15 @@ class Genre
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(
+        message: 'Veuillez renseigner le nom du genre.',
+    )]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Le nom du genre doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le nom du genre ne peut pas dépasser {{ limit }} caractères.',
+    )]
     private ?string $name = null;
 
     /**

@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\UniqueConstraint(name: 'UNIQ_IDENTIFIER_EMAIL', fields: ['email'])]
@@ -21,24 +22,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
+    #[Assert\Email(
+        message: 'L\'adresse email {{ value }} n\'est pas valide.',
+    )]
     private ?string $email = null;
 
     /**
      * @var list<string> The user roles
      */
     #[ORM\Column]
+    #[Assert\NotBlank(
+        message: 'Les rôles ne peuvent pas être vides.',
+    )]
+    #[Assert\All(
+        constraints: [
+            new Assert\NotBlank(message: 'Chaque rôle doit être non vide.'),
+            new Assert\Choice(
+                choices: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SUPER_ADMIN'],
+                message: 'Le rôle {{ value }} n\'est pas valide.',
+            ),
+        ]
+    )]
     private array $roles = [];
 
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
+    #[Assert\NotBlank(
+        message: 'Le mot de passe ne peut pas être vide.',
+    )]
+    #[Assert\Length(
+        min: 8,
+        max: 255,
+        minMessage: 'Le mot de passe doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le mot de passe ne peut pas dépasser {{ limit }} caractères.',
+    )]
     private ?string $password = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Le prénom doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le prénom ne peut pas dépasser {{ limit }} caractères.',
+    )]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\Length(
+        min: 2,
+        max: 100,
+        minMessage: 'Le nom de famille doit comporter au moins {{ limit }} caractères.',
+        maxMessage: 'Le nom de famille ne peut pas dépasser {{ limit }} caractères.',
+    )]
     private ?string $lastname = null;
 
     /**
