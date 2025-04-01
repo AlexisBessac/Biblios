@@ -38,6 +38,23 @@
                     </div>
                 </div>
             </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <h2 class="h2 mb-4">Commentaires</h2>
+                    <div class="list-group">
+                        {% for comment in book.comments %}
+                            <div class="list-group-item list-group-item-action mb-3 shadow-sm rounded">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <h3 class="mb-0 text-primary">{{ comment.user.firstname }} {{ comment.user.lastname }}</h3>
+                                </div>
+                                <p class="mb-0">{{ comment.content }}</p>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-info">Aucun commentaire pour ce livre.</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </main>

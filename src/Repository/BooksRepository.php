@@ -29,6 +29,15 @@ class BooksRepository extends ServiceEntityRepository
         );
     }
 
+    public function findWithComments()
+    {
+        return $this->createQueryBuilder('b')
+            ->leftJoin('b.comments', 'c')
+            ->addSelect('c')
+            ->getQuery()
+            ->getResult();
+    }
+
     //    public function findOneBySomeField($value): ?Books
     //    {
     //        return $this->createQueryBuilder('b')

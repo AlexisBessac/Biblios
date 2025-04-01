@@ -20,8 +20,9 @@ final class BooksController extends AbstractController
     #[Route(name: 'app_admin_books_index', methods: ['GET'])]
     public function index(BooksRepository $booksRepository): Response
     {
+        $books = $booksRepository->findWithComments(); // Utilisation d'une méthode personnalisée
         return $this->render('admin/books/index.html.twig', [
-            'books' => $booksRepository->findAll(),
+            'books' => $books,
         ]);
     }
 
