@@ -6,9 +6,12 @@
     <div class="container my-5">
         <h1 class="mb-4 text-center">Liste des commentaires</h1>
 
-        <div class="my-4">
-            <a href="{{ path('app_comments_new') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Ajouter un nouveau commentaire
+        <div class="my-4 d-flex justify-content-between">
+            <a href="{{ path('app_admin_books_index') }}" class="btn btn-secondary" title="Retour à la liste des livres">
+                <i class="fas fa-arrow-left"></i> Retour à la liste des livres
+            </a>
+            <a href="{{ path('app_logout') }}" class="btn btn-danger" title="Se déconnecter">
+                <i class="fas fa-sign-out-alt"></i> Déconnexion
             </a>
         </div>
 
@@ -30,9 +33,6 @@
                     <td class="text-center">
                         <a href="{{ path('app_comments_show', {'id': comment.id}) }}" class="btn btn-sm btn-info me-2" title="Voir">
                             <i class="fas fa-eye"></i> Voir
-                        </a>
-                        <a href="{{ path('app_comments_edit', {'id': comment.id}) }}" class="btn btn-sm btn-warning" title="Modifier">
-                            <i class="fas fa-edit"></i> Modifier
                         </a>
                     </td>
                 </tr>

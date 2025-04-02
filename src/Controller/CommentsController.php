@@ -25,6 +25,7 @@ final class CommentsController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_USER")]
     #[Route('/new', name: 'app_comments_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -54,6 +55,7 @@ final class CommentsController extends AbstractController
         ]);
     }
 
+    #[IsGranted("ROLE_USER")]
     #[Route('/{id}/edit', name: 'app_comments_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Comments $comment, EntityManagerInterface $entityManager): Response
     {

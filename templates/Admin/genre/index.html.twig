@@ -6,8 +6,17 @@
     <div class="container my-5">
         <h1 class="mb-4 text-center">Liste des genres</h1>
 
-        <div class="my-4">
-            <a href="{{ path('app_admin_genre_new') }}" class="btn btn-primary">
+        <div class="d-flex justify-content-end mb-4">
+            <a href="{{ path('app_logout') }}" class="btn btn-danger" title="Se déconnecter">
+                <i class="fas fa-sign-out-alt"></i> Déconnexion
+            </a>
+        </div>
+
+        <div class="my-4 d-flex justify-content-between">
+            <a href="{{ path('app_admin_books_index') }}" class="btn btn-secondary" title="Retour à la liste des livres">
+                <i class="fas fa-arrow-left"></i> Retour à la liste des livres
+            </a>
+            <a href="{{ path('app_admin_genre_new') }}" class="btn btn-primary" title="Créer un nouveau genre">
                 <i class="fas fa-plus"></i> Créer un nouveau genre
             </a>
         </div>
