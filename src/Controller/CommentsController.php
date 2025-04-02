@@ -16,6 +16,7 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 #[Route('/comments')]
 final class CommentsController extends AbstractController
 {
+    #[IsGranted("ROLE_ADMIN")]
     #[Route(name: 'app_comments_index', methods: ['GET'])]
     public function index(CommentsRepository $commentsRepository): Response
     {
@@ -35,7 +36,8 @@ final class CommentsController extends AbstractController
             $entityManager->persist($comment);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_comments_index', [], Response::HTTP_SEE_OTHER);
+            // Redirection vers la page du livre concerné
+            return $this->redirectToRoute('app_book_show', ['id' => $comment->getBooks()->getId()], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('comments/new.html.twig', [
