@@ -3,42 +3,46 @@
 {% block title %}Détails de l'Utilisateur{% endblock %}
 
 {% block body %}
-    <div class="container my-5">
-        <h1 class="mb-4 text-center">Détails de l'utilisateur</h1>
-
-        <div class="my-4">
-            <a href="{{ path('app_admin_user_index') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Retour à la liste
-            </a>
+<main>
+    <section>
+        <div class="container my-5">
+            <h1 class="mb-4 text-center">Détails de l'utilisateur</h1>
+    
+            <div class="my-4">
+                <a href="{{ path('app_admin_user_index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+    
+            <table class="table table-bordered table-striped my-4">
+                <tbody>
+                    <tr>
+                        <th>Prénom</th>
+                        <td>{{ user.firstname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nom</th>
+                        <td>{{ user.lastname }}</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rôles</th>
+                        <td>
+                            {% if user.roles is defined and user.roles is iterable %}
+                                {{ user.roles|join(', ') }}
+                            {% else %}
+                                Aucun rôle
+                            {% endif %}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            {{ include('admin/user/_delete_form.html.twig') }}
         </div>
-
-        <table class="table table-bordered table-striped my-4">
-            <tbody>
-                <tr>
-                    <th>Prénom</th>
-                    <td>{{ user.firstname }}</td>
-                </tr>
-                <tr>
-                    <th>Nom</th>
-                    <td>{{ user.lastname }}</td>
-                </tr>
-                <tr>
-                    <th>Email</th>
-                    <td>{{ user.email }}</td>
-                </tr>
-                <tr>
-                    <th>Rôles</th>
-                    <td>
-                        {% if user.roles is defined and user.roles is iterable %}
-                            {{ user.roles|join(', ') }}
-                        {% else %}
-                            Aucun rôle
-                        {% endif %}
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        {{ include('admin/user/_delete_form.html.twig') }}
-    </div>
+    </section>
+</main>
 {% endblock %}

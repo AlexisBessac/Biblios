@@ -3,17 +3,21 @@
 {% block title %}Nouveau Genre{% endblock %}
 
 {% block body %}
-    <div class="container my-5">
-        <h1 class="mb-4 text-center">Créer un nouveau genre</h1>
-
-        <div class="my-4">
-            <a href="{{ path('app_admin_genre_index') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Retour à la liste
-            </a>
+<main>
+    <section>
+        <div class="container my-5">
+            <h1 class="mb-4 text-center">Créer un nouveau genre</h1>
+    
+            <div class="my-4">
+                <a href="{{ path('app_admin_genre_index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+    
+            <div class="card p-4 shadow-sm">
+                {{ include('admin/genre/_form.html.twig') }}
+            </div>
         </div>
-
-        <div class="card p-4 shadow-sm">
-            {{ include('admin/genre/_form.html.twig') }}
-        </div>
-    </div>
+    </section>
+</main>
 {% endblock %}

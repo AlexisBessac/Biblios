@@ -3,50 +3,54 @@
 {% block title %}Détails du Livre{% endblock %}
 
 {% block body %}
-    <div class="container my-5">
-        <h1 class="mb-4 text-center">Détails du livre</h1>
-
-        <div class="my-4">
-            <a href="{{ path('app_admin_books_index') }}" class="btn btn-secondary">
-                <i class="fas fa-arrow-left"></i> Retour à la liste
-            </a>
-        </div>
-
-        <table class="table table-bordered table-striped my-4">
-            <tbody>
-                <tr>
-                    <th>Titre</th>
-                    <td>{{ book.title }}</td>
-                </tr>
-                <tr>
-                    <th>Description</th>
-                    <td>{{ book.description }}</td>
-                </tr>
-                <tr>
-                    <th>Nombre de pages</th>
-                    <td>{{ book.pageNumber }}</td>
-                </tr>
-                <tr>
-                    <th>Publié en</th>
-                    <td>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <h2 class="h2 mt-5">Commentaires</h2>
-        <div class="list-group">
-            {% for comment in book.comments %}
-                <div class="list-group-item list-group-item-action mb-3 shadow-sm rounded">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h3 class="mb-0 text-primary">{{ comment.user.firstname }} {{ comment.user.lastname }}</h3>
+<main>
+    <section>
+        <div class="container my-5">
+            <h1 class="mb-4 text-center">Détails du livre</h1>
+    
+            <div class="my-4">
+                <a href="{{ path('app_admin_books_index') }}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Retour à la liste
+                </a>
+            </div>
+    
+            <table class="table table-bordered table-striped my-4">
+                <tbody>
+                    <tr>
+                        <th>Titre</th>
+                        <td>{{ book.title }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ book.description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de pages</th>
+                        <td>{{ book.pageNumber }}</td>
+                    </tr>
+                    <tr>
+                        <th>Publié en</th>
+                        <td>{{ book.publishedAt ? book.publishedAt|date('Y') : '' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <h2 class="h2 mt-5">Commentaires</h2>
+            <div class="list-group">
+                {% for comment in book.comments %}
+                    <div class="list-group-item list-group-item-action mb-3 shadow-sm rounded">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <h3 class="mb-0 text-primary">{{ comment.user.firstname }} {{ comment.user.lastname }}</h3>
+                        </div>
+                        <p class="mb-0">{{ comment.content }}</p>
                     </div>
-                    <p class="mb-0">{{ comment.content }}</p>
-                </div>
-            {% else %}
-                <div class="alert alert-info">Aucun commentaire pour ce livre.</div>
-            {% endfor %}
+                {% else %}
+                    <div class="alert alert-info">Aucun commentaire pour ce livre.</div>
+                {% endfor %}
+            </div>
+    
+            {{ include('admin/books/_delete_form.html.twig') }}
         </div>
-
-        {{ include('admin/books/_delete_form.html.twig') }}
-    </div>
+    </section>
+</main>
 {% endblock %}
